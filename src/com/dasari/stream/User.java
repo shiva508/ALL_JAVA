@@ -12,7 +12,6 @@ public class User {
 	
 
 	public User(String name, Integer age, boolean active) {
-		super();
 		this.name = name;
 		this.age = age;
 		this.active = active;
@@ -48,9 +47,12 @@ public class User {
 		this.age = age;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", age=" + age + "]";
+		return "User [name=" + name + ", age=" + age + ", active=" + active + "]";
 	}
+
 
 }

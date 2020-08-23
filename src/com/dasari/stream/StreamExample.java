@@ -1,9 +1,11 @@
 package com.dasari.stream;
 
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,7 +20,58 @@ public class StreamExample {
 		find3DistinctsmalletNumbersWithJava8();
 		operationsOnObjectBeforeJava8();
 		operationsOnObjectWithJava8();
+		operationsOnDuplicateObjectWithJava8();
+		operationsOnObjectWithJava8Grouping();
 
+	}
+
+	public static void operationsOnObjectWithJava8Grouping() {
+		List<User> userList=getAllUsers();
+		String names=userList.stream().map(User::getName).collect(Collectors.joining(","));
+		System.out.println("Names:"+names);
+		//Group By
+		
+		Map<Boolean, List<User>> groupedUser=userList.stream().collect(Collectors.groupingBy(user->user.isActive()));
+		System.out.println(groupedUser);
+		
+		//Count Active and in active user
+		Map<Boolean, Long> countUsers=userList
+				.stream()
+				.collect(Collectors.groupingBy(User::isActive, Collectors.counting()));
+		
+		System.out.println(countUsers);
+		
+		Map<Boolean, List<User>> groupedParreleUser=userList.stream().parallel().collect(Collectors.groupingBy(user->user.isActive()));
+		System.out.println(groupedParreleUser);
+		
+	}
+
+	public static void operationsOnDuplicateObjectWithJava8() {
+		List<Hosting> list = new ArrayList<>();
+	    list.add(new Hosting(1, "liquidweb.com", 80000));
+	    list.add(new Hosting(2, "linode.com", 90000));
+	    list.add(new Hosting(3, "digitalocean.com", 120000));
+	    list.add(new Hosting(4, "aws.amazon.com", 200000));
+	    list.add(new Hosting(5, "mkyong.com", 1));
+	    list.add(new Hosting(2, "linode.com", 90000));
+	    list
+	    .stream()
+	    .sorted(Comparator.comparingLong(Hosting::getWebsites).reversed())
+	    .collect(Collectors.toMap(h->h.getName(), h->h.getWebsites(),(oldKey,newKey)->newKey));
+	    
+	    list
+	    .stream()
+	    .sorted(Comparator.comparingLong(Hosting::getWebsites).reversed())
+	    .collect(Collectors.toMap(h->h.getName(), h->h.getWebsites(),(oldKey,newKey)->oldKey));
+	    
+	  Map map= list
+	    .stream()
+	    .sorted(Comparator.comparingLong(Hosting::getWebsites).reversed())
+	    .collect(Collectors.toMap(h->h.getName(), h->h.getWebsites(),(oldKey,newKey)->newKey,LinkedHashMap::new));
+	  
+	  System.out.println(map);
+	    
+	    
 	}
 
 	private static void operationsOnObjectWithJava8() {
@@ -26,26 +79,49 @@ public class StreamExample {
 		userList.stream()
 		.sorted(Comparator.comparingInt(User::getAge).reversed())
 		.limit(3)
-		.map(User::getName).forEach(System.out::print);
+		.map(User::getName)
+		.forEach(System.out::print);
 		
 	List<String>username=userList.stream()
 		.sorted(Comparator.comparingInt(User::getAge).reversed())
 		.filter(user->user.isActive())
 		.limit(3)
-		.map(User::getName).collect(Collectors.toList());
+		.map(User::getName)
+		.collect(Collectors.toList());
 	
 	Set<String>usernameSet=userList.stream()
 			.sorted(Comparator.comparingInt(User::getAge).reversed())
 			.filter(user->user.isActive())
 			.limit(3)
-			.map(User::getName).collect(Collectors.toSet());
+			.map(User::getName)
+			.collect(Collectors.toSet());
 	
-	Map<String,Integer>sa=userList.stream()
-			.sorted()
-			.sorted(Comparator.comparingInt(User::getAge).reversed())
-			.filter(user->user.isActive())
-			.limit(3)
-			.collect(Collectors.toMap(User::getName,User::getAge));
+	Map<String,Integer> userMap=userList.stream()
+	.sorted(Comparator.comparingInt(User::getAge).reversed())
+	.filter(user->user.isActive())
+	.limit(3)
+	.collect(Collectors.toMap(u->u.getName(), u->u.getAge()));
+	System.out.println(userMap);
+	
+	List<Hosting> list = new ArrayList<>();
+    list.add(new Hosting(1, "liquidweb.com", 80000));
+    list.add(new Hosting(2, "linode.com", 90000));
+    list.add(new Hosting(3, "digitalocean.com", 120000));
+    list.add(new Hosting(4, "aws.amazon.com", 200000));
+    list.add(new Hosting(5, "mkyong.com", 1));
+    Map<Integer, String> hostingMap=list
+    		.stream()
+    		.collect(Collectors.toMap(Hosting::getId, Hosting::getName));
+    System.out.println(hostingMap);
+    
+    Map<String, Long> hostingMap1=list
+    		.stream()
+    		.collect(Collectors.toMap(Hosting::getName, Hosting::getWebsites));
+    System.out.println(hostingMap1);
+    Map<Integer, String> result3 = list.stream().collect(
+            Collectors.toMap(x -> x.getId(), x -> x.getName()));
+    System.out.println(list);
+    list.stream().collect(Collectors.toMap(x->x.getId(),x->x.getWebsites()));
 		
 	}
 
@@ -70,13 +146,15 @@ public class StreamExample {
 		
 	}
 
-	private static List<User> getAllUsers() {
-		return Arrays.asList(new User("A", 3,false),
+	public static List<User> getAllUsers() {
+		return Arrays.asList(
+				new User("A", 3,false),
 				new User("B", 4,true),
 				new User("C", 0,false),
 				new User("D", 50,true),
 				new User("E", 33,false),
-				new User("F", 35,true));
+				new User("F", 35,true)
+				);
 	}
 
 	public static void find3DistinctsmalletNumbersBeforeJava8() {
