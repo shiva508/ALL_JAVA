@@ -2,17 +2,81 @@ package com.dasari.stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class StreamExample {
 	public static void main(String[] args) {
-		//findMinNumberBeforeJava8();
-		//findMinNumberWithJava8();
+		findMinNumberBeforeJava8();
+		findMinNumberWithJava8();
 		find3DistinctsmalletNumbersBeforeJava8();
 		find3DistinctsmalletNumbersWithJava8();
+		operationsOnObjectBeforeJava8();
+		operationsOnObjectWithJava8();
 
+	}
+
+	private static void operationsOnObjectWithJava8() {
+		List<User> userList=getAllUsers();
+		userList.stream()
+		.sorted(Comparator.comparingInt(User::getAge).reversed())
+		.limit(3)
+		.map(User::getName).forEach(System.out::print);
+		
+	List<String>username=userList.stream()
+		.sorted(Comparator.comparingInt(User::getAge).reversed())
+		.filter(user->user.isActive())
+		.limit(3)
+		.map(User::getName).collect(Collectors.toList());
+	
+	Set<String>usernameSet=userList.stream()
+			.sorted(Comparator.comparingInt(User::getAge).reversed())
+			.filter(user->user.isActive())
+			.limit(3)
+			.map(User::getName).collect(Collectors.toSet());
+	
+	Map<String,Integer>sa=userList.stream()
+			.sorted()
+			.sorted(Comparator.comparingInt(User::getAge).reversed())
+			.filter(user->user.isActive())
+			.limit(3)
+			.collect(Collectors.toMap(User::getName,User::getAge));
+		
+	}
+
+	private static void operationsOnObjectBeforeJava8() {
+		List<User> userList=getAllUsers();
+		//To avoid mutation create copy
+		List<User> copyUsers=new ArrayList<User>(userList);
+		copyUsers.sort((user1,user2)->user2.getAge()-user1.getAge());
+		//Pick Top 3
+		int count=0;
+		for (int i = 0; i < 3; i++) {
+			User user=copyUsers.get(i);
+			System.out.println(user);
+		}
+		for (User user:copyUsers) {
+			if(count<4&&user.isActive()) {
+				System.out.println(user);
+				count++;
+			}
+			
+		}
+		
+	}
+
+	private static List<User> getAllUsers() {
+		return Arrays.asList(new User("A", 3,false),
+				new User("B", 4,true),
+				new User("C", 0,false),
+				new User("D", 50,true),
+				new User("E", 33,false),
+				new User("F", 35,true));
 	}
 
 	public static void find3DistinctsmalletNumbersBeforeJava8() {
@@ -44,6 +108,11 @@ public class StreamExample {
 		
 		IntStream.of(numArray).filter(num->num%2==0);
 		IntStream.of(numArray).map(num->num*2);
+		IntStream.range(404, 408).forEach(System.out::print);
+		IntStream.range(408, 508).toArray();
+		IntStream.range(408, 508).boxed().collect(Collectors.toList());
+		IntStream.of(numArray).anyMatch(num->num%2==0);//boolean
+		IntStream.of(numArray).allMatch(num->num%2==0);//boolean
 		
 
 	}
