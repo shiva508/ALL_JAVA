@@ -1,0 +1,43 @@
+1.What is overriding?
+Ans:
+When child class has the same methods as parent class has then it is known as method overriding
+or 
+If child class provide implementation for methods declared in parent class then it is known method overriding
+2.Where do we use overriding?
+Ans:
+Method overriding is used to provide different implementation for method which is declared in parent class
+Method overriding Used for runtime polymorphism 
+3.Rules for method overriding
+Ans:
+method name and number of parameters passing in child and parent class should be same
+Child class shoud be inherited from parent class 
+Return type should be same for both parent class method and child class method
+4.What is printed when we assign child class object to parent class reference ?
+Ans:
+It calls method in child class 
+4.What is printed when we assign parent class object to child class reference ?
+Ans:
+Can not assign parent class object to child class reference
+
+5.Can we override static method?
+Ans:
+No, a static method cannot be overridden. It can be proved by runtime polymorphism
+If we try to override them they will be hidden in the sub class.
+6.Why can not override static methods?
+because the static method is bound with class whereas instance method is bound with an object.
+Static belongs to the class area, and an instance belongs to the heap area. 
+7.What happens if we change the arguments of overriding method? 
+Ans:
+If we change parameters it becomes method overloading
+8.Can we override protected method of super class as public method in the sub class?
+yes 
+9.Can we override main method
+Ans:
+No miain method is static 
+10.Can we change the return type of overriding method from Number type to Integer type?
+Ans:
+You can change as Integer is a sub class of Number type.
+  
+  
+  
+  
