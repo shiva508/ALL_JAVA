@@ -1,11 +1,16 @@
-How many ways can we create thread?
+1.How many ways can we create thread?
 Ans:
-We can ctrate thread by extending Thread class.
+2.We can ctrate thread by extending Thread class.
 or
-Implementing Runnable Interface
+3.Implementing Runnable Interface
 Explain life cycle of thread?
-1.NEW-->is not started yes
-2.RUNNABLE
-3.RUNNING
-4.BLOCKED/WAITING
-5.TERMINATED/DEAD
+	1.NEW-->is not started yes
+	2.RUNNABLE-->ready for excecution but other thread is running now
+	3.RUNNING-->when thread is executing
+	4.BLOCKED/WAITING-->waiting for some extrnal data,waiting for data from other thread
+	5.TERMINATED/DEAD-->After completing thread excetion completed
+Methods:
+Join-->
+Sleep-->
+Yeild-->
+synchronized
