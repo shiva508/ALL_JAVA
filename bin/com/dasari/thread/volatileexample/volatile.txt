@@ -1,0 +1,32 @@
+1.Variable Visibility
+There is a common problem with visibility of variables in multithreaded environments. 
+Let's assume that we have a shared variable (or object) that is being accessed by 
+two different threads (each thread on its own processor).
+
+If one thread updates the variable/object, we cannot know for sure when 
+exactly this change will be visible to the other thread. The reason why 
+this happens is because of CPU caching.
+
+Each thread that uses the variable makes a local copy (i.e. cache) of its 
+value on the CPU itself. This allows for reading and writing operations 
+to be more efficient since the updated value doesn't need to "travel" 
+all the way to the main memory, but can instead be temporarily stored in a local cache:
+
+If Thread 1 updates the variable, it updates it in the cache and Thread 2 still has 
+the outdated copy in its cache. Thread 2's operation might depend on the result of 
+Thread 1, so working on the outdated value will produce a completely different result.
+
+Finally, when they'd like to commit the changes to the main memory, the values are 
+completely different, and one overrides the other.
+
+The volatile Keyword
+The volatile keyword marks a variable as, well, volatile. By doing so, the JVM 
+guarantees that each write operation's result isn't written in the local memory but 
+rather in the main memory.
+
+This means that any thread in the environment can access the shared variable with 
+the newest, up-to-date value without any worry.
+
+A similar, but not identical behavior, can be achieved with the synchronized keyword.
+
+
