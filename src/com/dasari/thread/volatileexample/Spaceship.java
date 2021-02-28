@@ -1,7 +1,7 @@
 package com.dasari.thread.volatileexample;
 
 public class Spaceship extends Thread {
-	private int fuel;
+	private volatile int fuel;
 	private RocketFuelStation rfs;
 
 	public Spaceship(RocketFuelStation rfs) {
