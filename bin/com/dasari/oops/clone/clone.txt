@@ -1,0 +1,38 @@
+A).Cloning
+--->Cloning is the process of creating a copy of an Object. Java Object 
+	class comes with native clone() method that returns the copy of the existing instance.
+	Since Object is the base class in Java, all objects by default support cloning.
+--->If you want to use Java Object clone() method, you have to implement the 
+	java.lang.Cloneable marker interface. Otherwise, 
+	it will throw CloneNotSupportedException at runtime.
+--->Also Object clone is a protected method, so you will have to override it.
+--->If our Employee class won’t implement Cloneable interface, the above program 
+	will throw CloneNotSupportedException runtime exception.
+--->We didn’t make any change in cloneImages properties, but still, they got changed 
+	because both iages and cloneImages variables are referring to the same object.This 
+	is happening because the default Object clone() method creates a shallow copy. 
+	{Format=jpg, Size=508MB, Lcation=India}
+-->cloneImages name:Nithya.jpg: What happened here?We changed the images name but 
+	cloneImages name didn’t change. It’s because String is immutable. So when we are 
+	setting iamges name, a new string is created and iamges name reference is changed 
+	in this.name = name;.Hence cloneImages name remains unchanged. You will find similar 
+	behavior for any primitive variable types too. So we are good with java object default 
+	cloning as long as we have only primitive and immutable variables in the object.
+B).Object Cloning Types
+1.Shallow Cloning
+--->The default implementation of Java Object clone() method is using shallow copy. 
+	It’s using reflection API to create the copy of the instance. The below code 
+	snippet showcase the shallow cloning implementation.
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		Images images=new Images();
+		images.setImageId(this.imageId)
+			  .setImageName(this.imageName)
+			  .setImageProps(this.imageProps);
+		return images;
+	}
+2. Deep Cloning
+--->In deep cloning, we have to copy fields one by one. If we have a field with 
+	nested objects such as List, Map, etc. then we have to write the code to copy 
+	them too one by one. That’s why it’s called deep cloning or deep copy.
