@@ -1,4 +1,4 @@
-package com.dasari.stream;
+package com.dasari.featurs8.stream;
 
 import java.util.ArrayList;
 

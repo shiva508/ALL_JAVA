@@ -1,4 +1,4 @@
-package com.dasari.stream;
+package com.dasari.featurs8.stream;
 
 public class User {
 	private String name;
