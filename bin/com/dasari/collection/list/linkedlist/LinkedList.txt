@@ -1,0 +1,8 @@
+-->Underlaying data structure is double linkedlist
+-->frequent operation is  insertion or removal in the middle
+-->if frequent operation is retrival then it is worst list
+-->implements Serializable and Clonable
+-->insertion order preserverd 
+-->duplicate objects allowed
+-->null insertion possible
+

@@ -1,0 +1,6 @@
+-->Underlaying data structure is growing and resizable array
+-->Duplicate objects are allowed
+-->Insertion order is preserved
+-->Heterozenious objects are allowed
+-->Null insertion possible
+-->Implements serializable,clonable and randomacess

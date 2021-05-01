@@ -1,0 +1,2 @@
+-->It is child class of vector
+-->When LIFO is needed use it.
