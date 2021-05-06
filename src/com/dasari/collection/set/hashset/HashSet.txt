@@ -1,0 +1,10 @@
+-->Underlaying data structure is HashTable
+-->Insertion order is not preserved as it is based on hash code of project
+-->Duplicate objects are not allowed
+-->if you enter duplicate object does not throw compile time o runtime error simply returns false
+-->null insertion possible only once
+-->Implements cloneable,serializable 
+-->Best suitable for search operation
+-->Fill Ration or Loadfactor(0.75)
+
+ 
