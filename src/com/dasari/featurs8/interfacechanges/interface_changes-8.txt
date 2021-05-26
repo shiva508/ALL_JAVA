@@ -1,0 +1,9 @@
+--->Oracle Corporation has introduced some new features to interface 
+	in Java 8 Release. That is Default methods and Static methods feature.
+--->we can write method implementations in Interface from Java 8 onwards. 
+	We need to use default keyword to define them as shown below.
+--->n Java 8, an interface can have only four kinds of things:
+	a).Constant variables
+	b).Abstract methods
+	c).Default methods
+	d).Static methods

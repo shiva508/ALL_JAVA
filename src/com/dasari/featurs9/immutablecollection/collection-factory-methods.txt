@@ -1,0 +1,17 @@
+--->Oracle Corp has introduced some convenient factory methods to create Immutable List, 
+	Set, Map and Map.Entry objects. These utility methods are used to create empty or 
+	non-empty Collection objects.
+--->In Java SE 8 and earlier versions, We can use Collections class utility methods 
+	like unmodifiableXXX to create Immutable Collection objects. For instance, 
+	if we want to create an Immutable List, then we can use Collections.unmodifiableList method.
+--->However, these Collections.unmodifiableXXX methods are a tedious and verbose approach. 
+	To overcome those shortcomings, Oracle Corp has added a couple of utility methods to List, 
+	Set and Map interfaces.
+--->List and Set interfaces have “of()” methods to create an empty or no-empty Immutable 
+	List or Set objects as shown below:
+
+
+List.of()
+Set.of()
+Map.of()
+to create immutable list of values 
