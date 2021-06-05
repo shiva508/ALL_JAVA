@@ -9,7 +9,7 @@ public class NimberList {
 		
 		List<Integer> integerList=display(new Integer[] {1,3,4});
 		System.out.println(integerList);
-		List<String> stringList=display(new String[] {"Sthiva","Dasari"});
+		List<String> stringList=display(new String[] {"Shiva","Dasari"});
 		System.out.println(stringList);
 		List<Number> nums = new ArrayList<Number>();
 		nums.add(2);
