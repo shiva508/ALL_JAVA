@@ -1,0 +1,4 @@
+--->If we try to modify the collection while iterating over it, we get ConcurrentModificationException. 
+--->Java 1.5 introduced Concurrent classes in the java.util.concurrent package to overcome this scenario
+--->ConcurrentHashMap is the Map implementation that allows us to modify the Map while iteration. 
+--->The ConcurrentHashMap operations are thread-safe. ConcurrentHashMap doesn’t allow null for keys and values.

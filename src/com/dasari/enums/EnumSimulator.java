@@ -7,6 +7,7 @@ public class EnumSimulator {
 		teamFunctionValuesOrdinals();
 		monthFunctionConstructor();
 		classmateFunction();
+		System.out.println(Classmate.NITHYA.rollNumber);
 	}
 
 	private static void classmateFunction() {
