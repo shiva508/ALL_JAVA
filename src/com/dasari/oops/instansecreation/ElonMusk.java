@@ -15,6 +15,7 @@ public class ElonMusk implements Cloneable,Serializable{
 
 	public static int rollNumber = 408;
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception {
 		// Using new Keyword
 		ElonMusk elonMusk = new ElonMusk();
