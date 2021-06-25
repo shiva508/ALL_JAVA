@@ -12,6 +12,8 @@ public class ImmutableCollectionSimulator {
 		numbers.stream().filter(num->num>400).mapToInt(num->num).sum();
 		numbers.stream().filter(num->num>400).mapToInt(Integer::intValue).sum();
 		numbers.stream().filter(num->num>400).collect(Collectors.summingInt(Integer::intValue));
+		numbers.stream().reduce(0, (x,y)->x+y);
+		numbers.stream().reduce(0, Integer::sum);
 		Set<String> set=Set.of("Shiva","Nithya");
 		Map<String, Integer> map=Map.of("1",1);
 	}
