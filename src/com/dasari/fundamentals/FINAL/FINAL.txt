@@ -1,0 +1,3 @@
+-->Final is applicable to varibles,methods,class
+-->By default methods present in parent will be available child,
+-->If parent method has final then child class can not override 
