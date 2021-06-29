@@ -1,0 +1,3 @@
+DeadLock
+-->Deadlock is situation where two or more threads are blocked forever,waiting for each other
+-->when synchronized keyword causes the execution thread to block,and waiting get lock associated with specified block

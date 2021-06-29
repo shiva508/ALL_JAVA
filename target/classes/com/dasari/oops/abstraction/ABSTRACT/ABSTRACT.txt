@@ -1,0 +1,6 @@
+-->Abstract applicable for methods, and class
+-->if implementation is not available for now we can use abstract
+-->abstract method should provided implementation in child class
+-->If single method is declared as abstract in class class should be abstract
+-->
+

@@ -1,0 +1,81 @@
+1.Variable Visibility
+There is a common problem with visibility of variables in multithreaded environments. 
+Let's assume that we have a shared variable (or object) that is being accessed by 
+two different threads (each thread on its own processor).
+
+If one thread updates the variable/object, we cannot know for sure when 
+exactly this change will be visible to the other thread. The reason why 
+this happens is because of CPU caching.
+
+Each thread that uses the variable makes a local copy (i.e. cache) of its 
+value on the CPU itself. This allows for reading and writing operations 
+to be more efficient since the updated value doesn't need to "travel" 
+all the way to the main memory, but can instead be temporarily stored in a local cache:
+
+If Thread 1 updates the variable, it updates it in the cache and Thread 2 still has 
+the outdated copy in its cache. Thread 2's operation might depend on the result of 
+Thread 1, so working on the outdated value will produce a completely different result.
+
+Finally, when they'd like to commit the changes to the main memory, the values are 
+completely different, and one overrides the other.
+
+The volatile Keyword
+The volatile keyword marks a variable as, well, volatile. By doing so, the JVM 
+guarantees that each write operation's result isn't written in the local memory but 
+rather in the main memory.
+
+This means that any thread in the environment can access the shared variable with 
+the newest, up-to-date value without any worry.
+
+A similar, but not identical behavior, can be achieved with the synchronized keyword.
+
+
+The reordering is an optimization technique for performance improvements. 
+Interestingly, different components may apply this optimization:
+
+The processor may flush its write buffer in any order other than the program order
+The processor may apply out-of-order execution technique
+The JIT compiler may optimize via reordering
+
+
+3.3. volatile Memory Order
+To ensure that updates to variables propagate predictably to other threads, we should apply the 
+volatile modifier to those variables:
+
+4. volatile and Thread Synchronization
+For multithreaded applications, we need to ensure a couple of rules for consistent behavior:
+
+Mutual Exclusion – only one thread executes a critical section at a time
+Visibility – changes made by one thread to the shared data are visible to other 
+threads to maintain data consistency
+synchronized methods and blocks provide both of the above properties, 
+at the cost of application performance.
+
+volatile is quite a useful keyword because it can help ensure the visibility 
+aspect of the data change without, of course, providing mutual exclusion. Thus, 
+it's useful in the places where we're ok with multiple threads executing a block of 
+code in parallel, but we need to ensure the visibility property.
+
+
+5. Happens-Before Ordering
+The memory visibility effects of volatile variables extend beyond 
+the volatile variables themselves.
+
+To make matters more concrete, let's suppose thread A writes to a volatile variable, 
+and then thread B reads the same volatile variable. In such cases, the values that were 
+visible to A before writing the volatile variable will be visible to B after reading the volatile variable:
+
+Technically speaking, any write to a volatile field happens before every subsequent 
+read of the same field. This is the volatile variable rule of the Java Memory Model (JMM).
+
+5.1. Piggybacking
+Because of the strength of the happens-before memory ordering, sometimes 
+we can piggyback on the visibility properties of another volatile variable. For instance, in our 
+particular example, we just need to mark the ready variable as volatile:
+Anything prior to writing true to the ready variable is visible to anything after 
+reading the ready variable. Therefore, the number variable piggybacks on the memory 
+visibility enforced by the ready variable. Put simply, even though it's not a volatile variable, 
+it is exhibiting a volatile behavior.
+
+By making use of these semantics, we can define only a few of the variables 
+in our class as volatile and optimize the visibility guarantee.

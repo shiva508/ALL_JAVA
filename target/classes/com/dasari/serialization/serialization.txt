@@ -1,0 +1,9 @@
+Serialization
+-->Process of saving or writing an state of object to file is called serialization
+-->Process of converting java supported ob ject to either network or file supported form
+-->it can be achieved using FileOutputStream or ObjectOutputStream
+De-Serialization
+-->Process of reading state of object from file is called de-serialization
+-->process of converting an object from file or network supported form to java supported form.
+-->FileInputStream or ObjectInputStream
+ 

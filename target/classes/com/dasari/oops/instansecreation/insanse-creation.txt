@@ -1,0 +1,11 @@
+1. Using new keywords
+		Plan plan=new Plan();
+2. Using newInstance() method of Class class 
+		Plan instanseWay=(Plan) Class.forName("com.dasari.oops.instansecreation.Plan").newInstance();
+		Plan instanseWay2=Plan.class.newInstance();
+3.Using Reflection
+		Class clazz=Class.forName("com.dasari.oops.instansecreation.Plan");
+		Constructor<Plan> constructor=clazz.getEnclosingConstructor();
+		Plan plan3=(Plan) constructor.newInstance();
+4.Cloning 
+5.Desrialization

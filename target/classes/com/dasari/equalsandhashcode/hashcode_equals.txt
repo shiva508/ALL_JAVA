@@ -1,0 +1,6 @@
+-->HashMap and HashSet use the hashcode value of an object to find out how the 
+	object would be stored in the collection, and subsequently hashcode is used 
+	to help locate the object in the collection. Hashing retrieval involves:
+
+	a).First, find out the right bucket using hashCode().
+	b).Secondly, search the bucket for the right element using equals()
