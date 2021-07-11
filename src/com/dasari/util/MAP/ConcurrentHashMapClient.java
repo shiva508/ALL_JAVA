@@ -1,4 +1,4 @@
-package com.dasari.util.map;
+package com.dasari.util.MAP;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
