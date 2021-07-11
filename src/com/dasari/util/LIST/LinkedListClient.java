@@ -1,4 +1,4 @@
-package com.dasari.util.ARRAYLIST;
+package com.dasari.util.LIST;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,9 +13,11 @@ public class LinkedListClient {
 		}
 		System.out.println(list);
 		list.addLast(608);
-		
 		System.out.println(list);
 		list.removeFirst();
 		System.out.println(list);
+		System.out.println();
+		System.out.println(list.peek());
+		
 	}
 }
