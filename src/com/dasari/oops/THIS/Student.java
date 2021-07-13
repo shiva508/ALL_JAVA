@@ -1,4 +1,4 @@
-package com.dasari.oops.thisex;
+package com.dasari.oops.THIS;
 
 public class Student {
 	private Integer rollNo;
@@ -6,9 +6,9 @@ public class Student {
 	private Float fee;
 	
 	public Student(Integer rollNo,String name,Float fee) {
-		rollNo=rollNo;
-		name=name;
-		fee=fee;
+		this.rollNo=rollNo;
+		this.name=name;
+		this.fee=fee;
 	}
 	
 	public void displayStudentDetails() {
