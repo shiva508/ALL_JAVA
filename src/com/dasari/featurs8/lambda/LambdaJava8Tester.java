@@ -1,4 +1,4 @@
-package com.dasari.lambda;
+package com.dasari.featurs8.lambda;
 
 public class LambdaJava8Tester {
 	public int operate(int a, int b, MathOperation mathOperation) {

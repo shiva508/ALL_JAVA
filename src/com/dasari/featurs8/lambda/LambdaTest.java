@@ -1,4 +1,7 @@
-package com.dasari.lambda;
+package com.dasari.featurs8.lambda;
+
+import com.dasari.featurs8.lambda.FuncInterface;
+import com.dasari.featurs8.lambda.FuncInterfaceTwoParameters;
 
 public class LambdaTest {
 
